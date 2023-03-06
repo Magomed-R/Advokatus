@@ -1,0 +1,442 @@
+$main_color: #e8bf5d;
+
+@mixin font($f, $s, $w, $o, $c) {
+    font-family: $f, serif;
+    font-size: $s;
+    font-weight: $w;
+    opacity: $o;
+    text-align: center;
+    color: $c;
+}
+
+@mixin flex($jc, $ai, $g) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    gap: $g;
+}
+
+@mixin grid($c, $r, $jc, $ac) {
+    display: grid;
+    grid-template-columns: $c;
+    grid-template-rows: $r;
+    justify-items: $jc;
+    align-items: $ac;
+}
+
+body {
+    user-select: none;
+    overflow-x: hidden;
+    margin: 0;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: gold;
+    }
+}
+
+.title-of-sections {
+    @include flex(center, start, 10px);
+    flex-direction: column;
+    border-left: 2px solid $main_color;
+    padding-left: 20px;
+    margin-bottom: 75px;
+    h3 {
+        @include font("Playfair Display", 30px, 500, 1, black);
+        margin: 0;
+        &.dark {
+            color: white;
+        }
+    }
+    p {
+        @include font("Playfair Display", 21px, 400, 1, black);
+        width: 800px;
+        margin: 0;
+        text-align: left;
+        &.dark {
+            color: white;
+        }
+    }
+}
+
+header {
+    z-index: 2;
+    @include flex(center, center, 330px);
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    min-height: 50px;
+    max-height: 11%;
+    box-shadow: 1px 1px 7px black;
+    white-space: nowrap;
+    p {
+        @include font("Playfair Bold", 25px, 700, 1, black);
+        cursor: pointer;
+        span {
+            @include font("Playfair Bold", 25px, 700, 1, $main_color);
+        }
+    }
+    div {
+        @include flex(center, center, 50px);
+        a {
+            text-decoration: none;
+            @include font("Open Sans", 14px, 700, 0.7, black);
+            transition: 0.5s;
+            padding-bottom: 5px;
+            &:hover {
+                opacity: 1;
+            }
+        }
+        .active {
+            border-bottom: 4px solid $main_color;
+        }
+    }
+}
+
+main {
+    .s-1 {
+        white-space: nowrap;
+        height: 830px;
+        background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.8)), url("../assets/Adam.png") center no-repeat;
+        @include grid(repeat(4, 1fr), repeat(9, 97px), none, center);
+        .s-1__container {
+            grid-row: 7 / 8;
+            grid-column: 2 / 4;
+            @include flex(space-between, center, 0);
+            button {
+                border-radius: 25px;
+                @include font("Playfair Display", 16px, 700, 0.9, black);
+                background-color: $main_color;
+                border: none;
+                padding: 15px 30px;
+                box-shadow: 0 0px 4px black;
+                cursor: pointer;
+                transition: 0.2s;
+                width: 181px;
+                &:hover {
+                    box-shadow: 0 0px 3px black;
+                }
+                &:active {
+                    box-shadow: 0 0 0;
+                }
+            }
+            .s-1__name-container {
+                padding-left: 20px;
+                border-left: 4px solid $main_color;
+                text-shadow: 2px 2px 6px black;
+                h1 {
+                    @include font("Playfair Display", 65px, 400, 1, white);
+                    text-shadow: 2px 2px 6px black;
+                    margin: 0;
+                    padding: 0;
+                    text-align: left;
+                }
+                p {
+                    @include font("Open Sans", 31px, 400, 1, white);
+                    text-shadow: 2px 2px 6px black;
+                    text-align: left;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+    .s-2,
+    .s-3,
+    .s-4,
+    .s-5,
+    .s-6,
+    .s-7,
+    .s-8 {
+        padding: 100px 20%;
+    }
+
+    .s-2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .s-2__container {
+            @include grid(110px 500px 500px, repeat(4, 60px), center, center);
+            grid-template-areas:
+                "history history expertise"
+                "2016 lorem-1 big-lorem"
+                "2015 lorem-2 big-lorem"
+                "2014 lorem-3 big-lorem";
+            gap: 25px;
+            justify-content: start;
+            .grid-item1 {
+                grid-area: history;
+                @include font("Playfair Display", 21px, 600, 1, black);
+            }
+            .grid-item2 {
+                grid-area: expertise;
+                @include font("Playfair Display", 21px, 600, 1, black);
+            }
+            .grid-item3 {
+                grid-area: "2016";
+                @include font("Open Sans", 21px, 700, 1, black);
+            }
+            .grid-item4 {
+                grid-area: "2015";
+                @include font("Open Sans", 21px, 700, 1, black);
+            }
+            .grid-item5 {
+                grid-area: "2014";
+                @include font("Open Sans", 21px, 700, 1, black);
+            }
+            .grid-item6 {
+                grid-area: lorem-1;
+                @include font("Open Sans", 17px, 700, 1, black);
+                text-align: left;
+            }
+            .grid-item7 {
+                grid-area: lorem-2;
+                @include font("Open Sans", 17px, 700, 1, black);
+                text-align: left;
+            }
+            .grid-item8 {
+                grid-area: lorem-3;
+                @include font("Open Sans", 17px, 700, 1, black);
+                text-align: left;
+            }
+            .grid-item9 {
+                grid-area: big-lorem;
+                @include font("Open Sans", 16px, 400, 1, black);
+                text-align: left;
+            }
+        }
+    }
+    .s-3 {
+        background-color: black;
+        .s-3__container {
+            margin-left: 100px;
+            @include grid(repeat(2, 570px), repeat(2, 180px), start, start);
+            gap: 60px;
+            text-align: left;
+            article {
+                @include grid(auto 1fr, 1fr, start, start);
+                gap: 40px;
+                div {
+                    @include flex(space-between, start, 0);
+                    flex-direction: column;
+                    h5 {
+                        margin: 0;
+                        padding: 0;
+                        @include font("Playfair Display", 21px, 500, 1, white);
+                    }
+                    p {
+                        @include font("Open Sans", 14px, 450, 0.9, white);
+                        text-align: left;
+                        width: 350px;
+                        line-height: 25px;
+                    }
+                }
+            }
+        }
+    }
+    .s-4 {
+        .s-4__content {
+            @include grid(repeat(4, 1fr), 380px, start, center);
+            gap: 20px;
+            article {
+                @include flex(start, start, 9px);
+                flex-direction: column;
+                div {
+                    h5 {
+                        @include font("Playfair Display", 21px, 600, 1, #111111);
+                        text-align: left;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    p {
+                        @include font("Open Sans", 14px, 700, 0.7, black);
+                        text-align: left;
+                        margin: 0;
+                        padding: 0;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .s-5 {
+        background: center no-repeat url("../assets/our_clients_backgroung_img.png");
+        background-color: rgba($color: #000000, $alpha: 0.9);
+        color: white;
+        .s-5__content {
+            @include flex(start, start, 80px);
+            img {
+                box-shadow: 20px 20px 0 $main_color;
+            }
+            p {
+                @include font("Open Sans", 14px, 700, 0.8, white);
+                line-height: 31px;
+                text-align: left;
+            }
+            .s-5__text2 {
+                margin: 70px 0 0 0;
+                padding: 0;
+                font-size: 21px;
+                font-family: "Playfair Display";
+                font-weight: 700;
+            }
+            .s-5__text3 {
+                margin: 7px 0 0 0;
+                padding: 0;
+                font-size: 16px;
+                font-family: "Open Sans";
+                font-weight: 500;
+            }
+        }
+    }
+    .s-6 {
+        margin-right: 0;
+    }
+    .s-6__content {
+        @include flex(center, start, 30px);
+        .s-6__title {
+            @include font("Playfair Display", 21px, 400, 1, black);
+            text-align: left;
+            margin: 30px 0 0 0;
+        }
+        .s-6__container-date {
+            @include flex(space-between, start, 0);
+            margin-top: 10px;
+            .autor {
+                @include font("Open Sans", 16px, 700, 1, black);
+                margin: 0;
+                padding: 0;
+                span {
+                    @include font("Open Sans", 16px, 700, 0.7, #666666);
+                    margin: 0;
+                    padding: 0;
+                    font-style: italic;
+                }
+            }
+            .s-6__date {
+                font-style: italic;
+                @include font("Open Sans", 16px, 700, 1, #666666);
+                margin: 0;
+                padding: 0;
+            }
+        }
+        .s-6__text {
+            width: 360px;
+            @include font("Open Sans", 14px, 600, 1, #666666);
+            line-height: 31px;
+            text-align: left;
+            margin: 0;
+            margin-top: 30px;
+        }
+        .s-6__footer {
+            @include flex(space-between, center, 0);
+            border-bottom: 5px solid $main_color;
+            margin: 39px 0 0 0;
+            padding-bottom: 23px;
+        }
+    }
+    .s-7 {
+        background-color: #000;
+        color: white;
+        .s-7__content {
+            @include flex(space-evenly, start, 40px);
+            ul {
+                margin: 0;
+                padding: 0;
+                width: auto;
+                list-style: none;
+                li {
+                    width: 600px;
+                    border-bottom: 2px solid $main_color;
+                    margin: 0;
+                    padding: 10px 0;
+                    @include flex(space-between, center, 30px);
+                    @include font("Open Sans", 16px, 700, 1, white);
+                    text-align: left;
+                }
+                .active {
+                    color: $main_color;
+                }
+            }
+            .result {
+                width: 400px;
+                height: 220px;
+                padding: 25px 30px;
+                background-color: $main_color;
+                border-radius: 3px;
+                @include font("Open Sans", 16px, 700, 1, #111111);
+                text-align: left;
+                line-height: 31px;
+                box-shadow: 0px 12px 40px 0px rgba(216, 178, 87, 0.31);
+            }
+        }
+    }
+    .s-8__content {
+        @include flex(center, start, 60px);
+        form {
+            @include flex(center, start, 30px);
+            flex-direction: column;
+            input {
+                border: 0;
+                padding: 8px;
+                border-bottom: 1px solid rgba($color: #000000, $alpha: 0.4);
+                width: 400px;
+                font-style: italic;
+                font-family: "Open Sans", serif;
+                font-size: 17px;
+                opacity: 0.8;
+                transition: 0.7s;
+            }
+            input:focus {
+                border: none;
+                border-bottom: 1px solid $main_color;
+            }
+            textarea {
+                border: 0;
+                padding: 8px;
+                border-bottom: 1px solid rgba($color: #000000, $alpha: 0.4);
+                min-width: 400px;
+                min-height: 100px;
+                max-width: 500px;
+                max-height: 150px;
+                font-style: italic;
+                font-family: "Open Sans", serif;
+                font-size: 17px;
+                opacity: 0.8;
+            }
+            button {
+                padding: 19px 27px;
+                background-color: $main_color;
+                border-radius: 30px;
+                @include font('Playfair Display', 16px, 700, 1, black);
+                border: none;
+                cursor: pointer;
+                &:hover {
+                    box-shadow: 0 0px 3px black;
+                }
+                &:active {
+                    box-shadow: 0 0 0;
+                }
+            }
+        }
+        img {
+            box-shadow: -20px 20px 0 $main_color;
+            cursor: pointer;
+        }
+    }
+}
+
+footer {
+    background-color: black;
+    @include flex(center, center, 831px);
+    height: 81px;
+    p {
+        @include font('Playfair Display', 16px, 400, 0.5, white);
+        span {
+            @include font('Open Sans', 16px, 700, 1, white);
+        }
+    }
+}
